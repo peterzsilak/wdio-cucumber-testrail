@@ -10,7 +10,7 @@ export default class CucumberTestrailReporter extends WDIOReporter {
     }
 
     onTestFail(testStats) {
-        this.write(`Congratulations! Your test "${test.title}" failed 👏`)
+        this.write(`Congratulations! Your test "${test.title}" failed `)
     }
 
     onTestPass(test) {
