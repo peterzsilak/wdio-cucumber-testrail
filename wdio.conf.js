@@ -1,3 +1,5 @@
+const CucumberTestrailReporter = require('./reporter/cucumber.testrail.reporter')
+
 exports.config = {
     //
     // ====================
@@ -73,7 +75,7 @@ exports.config = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevel: 'info',
+    logLevel: 'debug',
     //
     // Set specific log levels per logger
     // loggers:
@@ -135,10 +137,12 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec'],
+    reporters: ['spec',
+        [CucumberTestrailReporter, {
+            someOption: 'foobar'
+        }]
+    ],
 
-
-    //
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
         // <string[]> (file/dir) require files before executing features
@@ -168,7 +172,6 @@ exports.config = {
         // <boolean> Enable this config to treat undefined definitions as warnings.
         ignoreUndefinedDefinitions: false
     },
-    
     //
     // =====
     // Hooks
@@ -211,8 +214,8 @@ exports.config = {
      * @param {Array.<String>} specs        List of spec file paths that are to be run
      * @param {Object}         browser      instance of created browser/device session
      */
-    // before: function (capabilities, specs) {
-    // },
+    before: function (capabilities, specs) {
+    },
     /**
      * Runs before a WebdriverIO command gets executed.
      * @param {String} commandName hook command name
